@@ -18,10 +18,15 @@ function WAReminders() {
   for(var i=0; i < events.length; i++)  {
     ev = events[i];
     
-    for(n=2; n <= contact.getLastRow(); ++n) {
-      cellno = contact.getRange(n,1).getValue();      
-      sendWA(ev.getTitle(), ev.getStartTime(), twilio_sid, twilio_token, cellno);
-    }    
+    if(ev.getTitle().substring(ev.getTitle().length-3, ev.getTitle().length) !== "~!#") {
+      
+      for(n=2; n <= contact.getLastRow(); ++n) {
+        cellno = contact.getRange(n,1).getValue();      
+        sendWA(ev.getTitle(), ev.getStartTime(), twilio_sid, twilio_token, cellno);
+      }   
+      ev.setTitle(ev.getTitle() + "~!#");
+    } 
+        
     
     Logger.log('Item '+ ev.getTitle() +' found on '+ ev.getStartTime()); 
   } 
