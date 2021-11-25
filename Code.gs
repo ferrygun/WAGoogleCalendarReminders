@@ -34,7 +34,7 @@ function WAReminders() {
 }
 
 function sendWA(title, time, twilio_sid, twilio_token, cellno) {
-  var url = "https://api.twilio.com/2010-04-01/Accounts/ACxxxxxxxxxxxxxxx/Messages.json";
+  var url = "https://api.twilio.com/2010-04-01/Accounts/" + twilio_sid + "/Messages.json";
   
   var options = {
     "method": "post",
